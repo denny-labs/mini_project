@@ -6,11 +6,35 @@ from src.config import RAW_DATA_PATH, CLEANED_DATA_PATH
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# def load_data(filepath):
+#     """Phase 1.1 & 1.2: Load data and set datetime index."""
+#     logging.info("Loading raw data...")
+#     # Based on the screenshot, we skip the Ticker row and the empty header row
+#     df = pd.read_csv(filepath, skiprows=[0, 1])
+    
+#     # The first column is named 'Price' but contains the dates
+#     df = df.rename(columns={'Price': 'Date'})
+    
+#     # Convert to datetime and set as index
+#     df['Date'] = pd.to_datetime(df['Date'])
+#     df = df.set_index('Date')
+    
+#     # Sort chronologically
+#     df = df.sort_index()
+    
+#     # Ensure all OHLCV columns are numeric
+#     numeric_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
+#     for col in numeric_cols:
+#         df[col] = pd.to_numeric(df[col], errors='coerce')
+        
+#     logging.info(f"Data loaded successfully. Shape: {df.shape}")
+#     return df
+
 def load_data(filepath):
     """Phase 1.1 & 1.2: Load data and set datetime index."""
     logging.info("Loading raw data...")
-    # Based on the screenshot, we skip the Ticker row and the empty header row
-    df = pd.read_csv(filepath, skiprows=[0, 1])
+    # Skip row 1 (Ticker) and row 2 (Date,,,,) and use row 0 as the header
+    df = pd.read_csv(filepath, skiprows=[1, 2])
     
     # The first column is named 'Price' but contains the dates
     df = df.rename(columns={'Price': 'Date'})
