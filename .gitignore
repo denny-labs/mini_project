@@ -14,6 +14,11 @@ env/
 data/raw/*.csv
 data/processed/*.csv
 
+# CatBoost output
+catboost_info/
+notebooks/catboost_info/
+*.tsv
+
 # Models (large files)
 models/*.pkl
 models/*.json
