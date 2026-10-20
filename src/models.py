@@ -73,3 +73,19 @@ def catboost_objective(trial, X, y, gap=5):
         'random_strength':    trial.suggest_float('random_strength', 0.0, 10.0),
     }
     return _cv_rmse(build_catboost, params, X, y, gap=gap)
+
+# def catboost_objective(trial, X, y, gap=5):
+#     params = {
+#         'iterations':          trial.suggest_int('iterations', 200, 800),      # was 300-1500
+#         'depth':               trial.suggest_int('depth', 4, 8),               # was 4-10
+#         'learning_rate':       trial.suggest_float('learning_rate', 0.01, 0.2, log=True),
+#         'l2_leaf_reg':         trial.suggest_float('l2_leaf_reg', 1e-3, 10.0, log=True),
+#         'bagging_temperature': trial.suggest_float('bagging_temperature', 0.0, 1.0),
+#         'thread_count':        -1,
+#         'od_type':             'Iter',       # early stopping during CV training
+#         'od_wait':             50,
+#     }
+#     return _cv_rmse(build_catboost, params, X, y, gap=gap)
+
+# the un-commented version is the original version used to get the output.
+# the new version(commented) is in case if there is a need to re run the code and I don't want to be struck with it for next 2 hours.
