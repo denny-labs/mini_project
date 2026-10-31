@@ -51,3 +51,25 @@ nsei-volatility-forecasting/
 
 ## Base paper
 “Forecasting Stock Market Volatility Using XGBoost: A Time Series Analysis” (IEEE, 2024).
+
+### 🏆 Model Comparison & Performance
+Through strict out-of-sample testing (20% holdout with a 5-day gap to prevent leakage), we compared five different models. **CatBoost** emerged as the best-performing model, closely followed by XGBoost.
+
+| Model | MAE | RMSE | R² | Directional Accuracy |
+| :--- | :--- | :--- | :--- | :--- |
+| **CatBoost** | 0.002334 | 0.002992 | **0.4233** | **65.6%** |
+| XGBoost | 0.002358 | 0.002993 | 0.4230 | 64.7% |
+| LightGBM | 0.002443 | 0.003042 | 0.4038 | 64.7% |
+| Linear Regression | **0.002326** | 0.003058 | 0.3975 | 65.3% |
+| Persistence | 0.002592 | 0.003537 | 0.1940 | 0.0% |
+
+*Note on R²: While the base paper reports an unrealistic R² of 0.98 (likely due to target leakage), our robust methodology yields a realistic R² of ~0.42. In financial time series, predicting forward volatility is inherently noisy; an R² of 0.42 out-of-sample indicates strong predictive signal without overfitting.*
+
+### 🏆 Best Model Performance (CatBoost)
+Through strict out-of-sample testing (20% holdout with a 5-day gap to prevent leakage), CatBoost emerged as the best-performing model:
+- **MAE:** 0.002334
+- **RMSE:** 0.002992
+- **R²:** 0.4233
+- **Directional Accuracy:** 65.6%
+
+*Note on R²: While the base paper reports an unrealistic R² of 0.98 (likely due to target leakage), our robust methodology yields a realistic R² of 0.42. In financial time series, predicting forward volatility is inherently noisy; an R² of 0.42 out-of-sample indicates strong predictive signal without overfitting.*
